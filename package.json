@@ -15,6 +15,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "build_to_docs": "react-scripts build && move build docs",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
