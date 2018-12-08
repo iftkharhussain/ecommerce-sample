@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+    <body>
+        Promise base script
+    </body>
+
+    
+    <script>
+        let promis1 = new Promise((resolve, rejecte) =>{
+            setTimeout(() => {
+                resolve('1st resolve')
+            }, 2000);
+            setTimeout(() => {
+                rejecte('1st rejecte')
+            }, 1000);
+        })
+
+        let promis2 = new Promise((resolve, rejecte) =>{
+            setTimeout(() => {
+                resolve('2nd resolve')
+            }, 4000);
+        })
+
+        Promise.all([promis1, promis2])
+        .then((resolve) => {
+            console.log(resolve)
+        }).catch((rejecte) =>{
+            console.log(rejecte)
+        })
+        Promise.race([promis1, promis2])
+        .then((resolve) => {
+            console.log('%c'+resolve, 'color:green; text-decoration: underline')
+        })
+
+    </script>
+</html>
