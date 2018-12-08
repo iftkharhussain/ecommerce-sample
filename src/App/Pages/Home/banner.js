@@ -34,22 +34,20 @@ class Banner extends React.Component{
                     </div> {/* card.// */}
                 </aside>
                 <div className="col-md-9">
-                    {/* ================= main slide ================= */}
-                    <div className="owl-init slider-main owl-carousel" data-items={1} data-dots="false" data-nav="true">
-                    <div className="item-slide">
-                        <img src="images/banners/header3.jpg" />
+                    <div className="owl-init slider-main owl-carousel" data-items={1} data-dots="true" data-nav="true">
+                        <div className="item-slide">
+                            <img src="/images/banners/header3.jpg" />
+                        </div>
+                        <div className="item-slide rounded">
+                            <img src="/images/banners/header4.jpg" />
+                        </div>
+                        <div className="item-slide rounded">
+                            <img src="/images/banners/header2.jpg" />
+                        </div>
                     </div>
-                    <div className="item-slide rounded">
-                        <img src="images/banners/header4.jpg" />
-                    </div>
-                    <div className="item-slide rounded">
-                        <img src="images/banners/header2.jpg" />
-                    </div>
-                    </div>
-                    {/* ============== main slidesow .end // ============= */}
-                </div> {/* col.// */}
+                </div> 
                 </div>
-            </div> {/* container .//  */}
+            </div> 
         </section>
         )
     }

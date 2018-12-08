@@ -306,7 +306,7 @@ class App extends Component {
     
     return(
         <div style={{'height':'100%'}}>
-            <Router>
+            <Router basename="https://iftkharhussain.github.io/ecommerce-sample/">
                 {routes}
             </Router>
         </div>
