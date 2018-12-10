@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import PageBanner from '../Header/page-banner';
 import Header from "../Header";
 import Footer from "../Footer";
+import { Link } from 'react-router-dom';
 
 
 
@@ -11,6 +12,9 @@ class ProductDetaile extends Component {
   constructor(props){
     super(props);
     this.state = {
+      cartAdded: false,
+      cart: [],
+      products: [],
       product: {
         category: "wait ...",
         company: "wait ...",
@@ -19,41 +23,59 @@ class ProductDetaile extends Component {
         image: "/images/ajax-loader2.gif",
         model: "wait ...",
         name: "wait ...",
-        price: "wait ..."
+        price: "wait ...",
+        key: null
       }
     }
+    this.updateCartDetail = this.updateCartDetail.bind(this)
   }
 
 componentWillMount(){
-    // Get product key from router props
-    let product_key = this.props.match.params.key;
-    if (this.props.products && this.props.products.length >= 1) {       
-        this.props.products.map( (product) => {
-            if (product_key === product.key) {
-                this.setState({ product })
-            }
-        })
-    }
+    this.setState({products: this.props.products, cart: this.props.cart}, ()=> {
+        this.updateCartDetail();
+    })
 }
+
+
 componentDidMount(){
     window.$("html, body").animate({ scrollTop: window.$(".products").offset().top }, "slow");
 }
 
-  componentWillReceiveProps(props){
-    // Get product key from router props
+updateCartDetail(){
 
-    let product_key = props.match.params.key;
-    if (props.products && props.products.length >= 1) {       
-        props.products.map( (product) => {
+    // Get product key from router props
+    let product_key = this.props.match.params.key;
+    if (product_key && this.state.products.length >= 1) {       
+        this.state.products.map( (product) => {
             if (product_key === product.key) {
                 this.setState({ product })
             }
         })
     }
-  }
+    
+    // check if it is in cart ?
+    if (product_key && this.state.cart.length >= 1) {
+        this.state.cart.map( (product) => {
+            if (product_key === product) {
+                this.setState({ cartAdded: true })
+            }
+        })
+    }
+}
 
-  addToCart(element){
-    alert(element.target)
+componentWillReceiveProps(props){
+    this.setState({products: props.products, cart: props.cart}, ()=> {
+        this.updateCartDetail();
+    })
+
+
+
+}
+
+
+  addToCart(e){
+    e.preventDefault();
+    this.props.dispatch({type: 'cart', data: this.state.product.key })
   }
  
   render() {
@@ -84,7 +106,7 @@ componentDidMount(){
                                     <h3 className="title mb-3">{this.state.product.name}</h3>
                                     <div className="mb-3"> 
                                     <var className="price h3 text-warning"> 
-                                        <span className="currency">US </span><span className="num">{this.state.product.price}</span>
+                                        <span className="currency">USD </span><span className="num">{this.state.product.price}</span>
                                     </var> 
                                     {/* <span>/per kg</span>  */}
                                     </div> {/* price-detail-wrap .// */}
@@ -120,7 +142,7 @@ componentDidMount(){
                                     </div> {/* rating-wrap.// */}
                                     <hr />
                                     <div className="row">
-                                    <div className="col-sm-5">
+                                    {/* <div className="col-sm-5">
                                         <dl className="dlist-inline">
                                         <dt>Quantity: </dt>
                                         <dd> 
@@ -130,8 +152,8 @@ componentDidMount(){
                                             <option> 3 </option>
                                             </select>
                                         </dd>
-                                        </dl>  {/* item-property .// */}
-                                    </div> {/* col.// */}
+                                        </dl> 
+                                    </div>  */}
                                     <div className="col-sm-7">
                                         <dl className="dlist-inline">
                                         <dt>Size: </dt>
@@ -153,7 +175,16 @@ componentDidMount(){
                                     </div>
                                     </div>
                                     <hr />
-                                    <button onClick={this.addToCart} className="btn  btn-primary"><i className="fas fa-shopping-cart" /> Add to cart </button>
+                                    {
+                                        this.state.cartAdded && <span style={{float: 'none', fontSize: 16, fontWeight: 'bold'}} className="addtocart"><i className="fa fa-shopping-cart" />&nbsp; Added</span>
+
+                                    } &nbsp; &nbsp;
+                                    <Link to={'/cart'} onClick={ this.state.cartAdded ? null : (e) => this.addToCart(e)} className="btn  btn-primary">
+                                    {
+                                        this.state.cartAdded ? 'Go to cart' : 'Add to cart' 
+                                    }
+                                    &nbsp;<i style={{verticalAlign: 'middle'}} className="fas fa-angle-double-right" />
+                                    </Link>
                                 </article>
                                 </aside> 
                             </div> 
@@ -171,8 +202,15 @@ componentDidMount(){
 
 const mapStateToProps = state => {
     return {
-        products: state.products
+        products: state.products,
+        cart: state.cart
     }
 }
-
-export default connect(mapStateToProps)(ProductDetaile);
+let mapDispatchToProps = (dispatch) => {
+    return {
+        dispatch: (obj) => {
+            dispatch(obj)
+        }
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(ProductDetaile);

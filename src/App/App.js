@@ -9,10 +9,15 @@ import Home from "./Pages/Home";
 import Listing from "./Pages/Listing";
 import Cart from "./Pages/Cart";
 import ProductDetaile from "./Pages/Product-detaile";
+import asyncComponent  from "./Hoc/asyncComponent";
+
+const AsyncComponent = asyncComponent(() => {
+    return import('./Pages/Cart')
+});
 
 // import firebase from "firebase";
 
-
+// helo
 
 
 
@@ -262,8 +267,8 @@ class App extends Component {
         //  Route params
         //  https://medium.com/@pshrmn/a-simple-react-router-v4-tutorial-7f23ff27adf
         //  component    — A React component. When a route with a component prop matches, the route will return a new element whose type is the provided React component (created using React.createElement).
-        //  render — A function that returns a React element [5]. It will be called when the path matches. This is similar to component, but is useful for inline rendering and passing extra props to the element.
-        //  children — A function that returns a React element. Unlike the prior two props, this will always be rendered, regardless of whether the route’s path matches the current location.
+        //  render       — A function that returns a React element [5]. It will be called when the path matches. This is similar to component, but is useful for inline rendering and passing extra props to the element.
+        //  children     — A function that returns a React element. Unlike the prior two props, this will always be rendered, regardless of whether the route’s path matches the current location.
           
           <Switch>
               <Route exact path="/" component={() => {
@@ -276,7 +281,7 @@ class App extends Component {
 
               <Route path="/listing" component={Listing} />
               
-              <Route path="/cart" component={Cart} />
+              <Route path="/cart" component={ AsyncComponent } />
               {/* <Route path="/profile" component={() => {
                   return <Redirect to="/" />
               }} /> */}
@@ -284,6 +289,7 @@ class App extends Component {
                   // return <PageNotFound auth={false} />
                   return <Redirect to="/" />
               }} /> */}
+              <Route component={() => <h2>Page not found</h2>} />
 
           </Switch>
         );
@@ -306,7 +312,7 @@ class App extends Component {
     
     return(
         <div style={{'height':'100%'}}>
-            <Router basename="https://iftkharhussain.github.io/ecommerce-sample/">
+            <Router>
                 {routes}
             </Router>
         </div>
