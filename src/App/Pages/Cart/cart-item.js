@@ -71,13 +71,13 @@ class CartItem extends React.Component{
                     </div> {/* price-wrap .// */}
                 </td>
                 <td className="text-right"> 
-                    <button onClick={() => {
+                    {/* <button onClick={() => {
                         this.props.methods({type: 'wishItem', id: this.props.item_key})
                     }} data-original-title="Save to Wishlist" className="btn-sm btn btn-outline-success" data-toggle="tooltip">
 
                         <i className="fa fa-heart" />
 
-                    </button> 
+                    </button>  */}
                     <button style={{marginLeft: 10}} onClick={() => {
                         this.props.methods({type: 'remove', id: this.props.item_key})
                     }} className="btn-sm btn btn-outline-danger"> × Remove</button>

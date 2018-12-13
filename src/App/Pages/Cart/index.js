@@ -3,6 +3,7 @@ import { removeToCart_LocalStorage } from "../../functions/localstorage";
 import CartItem from "./cart-item";
 import {connect} from 'react-redux';
 import PageBanner from '../Header/page-banner';
+import CartModalBox from "./cart-modal-box";
 import Header from "../Header";
 import Footer from "../Footer";
 
@@ -16,9 +17,11 @@ class Cart extends Component {
             products: [],
             cart: [],
             cart_items : [],
-            multiple_items: [],
             total_price: 0
         }
+        this.authPlaceOrder = this.authPlaceOrder.bind(this)
+        this.formSerialize = this.formSerialize.bind(this)
+        this.showModalBox = this.showModalBox.bind(this)
         this.cartItem_methods = this.cartItem_methods.bind(this)
         this.updatePrice_checkout = this.updatePrice_checkout.bind(this)
         this.findCartElement_AndPushToCart_items = this.findCartElement_AndPushToCart_items.bind(this)
@@ -70,6 +73,33 @@ class Cart extends Component {
         })
 
     }
+
+
+    componentDidMount() {
+        
+    }
+
+    showModalBox(){
+        // trigger modal box for auth and place order
+        window.jQuery(document).ready( function ($) {     
+            $('#cart_modal_box').modal('show')
+        })
+    }
+    
+    formSerialize(form) {
+        const data = new FormData(form);
+        return new URLSearchParams(data).toString();
+    }
+
+    authPlaceOrder(formJson){
+
+        let {cart_items, total_price} = this.state;
+        let placeOrderTo = {placeOrderTo: formJson}
+        total_price = {total_price: total_price}
+        cart_items.push(placeOrderTo, total_price)
+        alert(JSON.stringify(cart_items));
+    }
+
 
     cartItem_methods(obj){
 
@@ -144,7 +174,7 @@ class Cart extends Component {
 
                 <div className="body_part">
                     <PageBanner />
-                    
+                    < CartModalBox formData={this.authPlaceOrder} />
                     <section className="section-content bg padding-y border-top">
                         <div className="container">
                         <div className="row">
@@ -191,18 +221,18 @@ class Cart extends Component {
                                 <dd className="text-right"><strong>USD {this.state.total_price}</strong></dd>
                             </dl>
                             <hr />
-                            <button disabled={ this.state.cart.length > 0 ? '' : "disabled" } className="btn btn-block btn-outline-primary">Place order</button>
+                            <button disabled={ this.state.cart.length > 0 ? '' : "disabled" } onClick={this.showModalBox} className="btn btn-block btn-outline-primary">Place order</button>
                            
                             <hr />
                             <figure className="itemside mb-3">
-                                <aside className="aside"><img src="images/icons/pay-visa.png" /></aside>
+                                <aside className="aside"><img src="/images/icons/pay-visa.png" /></aside>
                                 <div className="text-wrap small text-muted">
                                 Pay 84.78 AED ( Save 14.97 AED )
                                 By using ADCB Cards 
                                 </div>
                             </figure>
                             <figure className="itemside mb-3">
-                                <aside className="aside"> <img src="images/icons/pay-mastercard.png" /> </aside>
+                                <aside className="aside"> <img src="/images/icons/pay-mastercard.png" /> </aside>
                                 <div className="text-wrap small text-muted">
                                 Pay by MasterCard and Save 40%. <br />
                                 Lorem ipsum dolor 
