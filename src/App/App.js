@@ -11,11 +11,11 @@ import Cart from "./Pages/Cart";
 import ProductDetaile from "./Pages/Product-detaile";
 import asyncComponent  from "./Hoc/asyncComponent";
 
+
+import firebase from "firebase";
 const AsyncComponent = asyncComponent(() => {
     return import('./Pages/Cart')
 });
-
-// import firebase from "firebase";
 
 // helo
 
@@ -76,19 +76,19 @@ class App extends Component {
 
 
     // Initialize Firebase
-//     var config = {
-//       
-//     };
-//     if (!firebase.apps.length) {
-//       // firebase.initializeApp({});
-//       firebase.initializeApp(config);
-//    }
-//     this.database = firebase.database().ref("eshop");
+    var config = {
+      
+    };
+    if (!firebase.apps.length) {
+      // firebase.initializeApp({});
+      firebase.initializeApp(config);
+   }
+    this.database = firebase.database().ref("eshop");
 
 
 
 
-    // var database = firebase.database();
+    var database = firebase.database();
 
 
     // axios.put('https://test-project-f9628.firebaseio.com/rest/saving-data/fireblog/user2.json', {
@@ -167,87 +167,87 @@ class App extends Component {
 
     /*  DATABASE MIGERATION */
 
-    // this.database.child('features').child('home_page').remove();
-    // this.database.child('features').child('home_page').push(
-    //   {name:'Fast Delivery', condition: 'from $100', icon: '/images/char_1.png'},
-    // )
-    // this.database.child('features').child('home_page').push(
-    //   {name:'Full Cashback', condition: 'from $200', icon: '/images/char_2.png'},
-    // )
-    // this.database.child('features').child('home_page').push(
-    //   {name:'Free Coupon', condition: 'from $200', icon: '/images/char_3.png'},
-    // )
-    // this.database.child('features').child('home_page').push(
-    //   {name:'100% Original', condition: 'Branded & local product', icon: '/images/char_4.png'},
-    // )
+    this.database.child('features').child('home_page').remove();
+    this.database.child('features').child('home_page').push(
+      {name:'Fast Delivery', condition: 'from $100', icon: '/images/char_1.png'},
+    )
+    this.database.child('features').child('home_page').push(
+      {name:'Full Cashback', condition: 'from $200', icon: '/images/char_2.png'},
+    )
+    this.database.child('features').child('home_page').push(
+      {name:'Free Coupon', condition: 'from $200', icon: '/images/char_3.png'},
+    )
+    this.database.child('features').child('home_page').push(
+      {name:'100% Original', condition: 'Branded & local product', icon: '/images/char_4.png'},
+    )
 
     /* PRODUCTS */
-    // this.database.child('products').remove();
-    // this.database.child('currency').set('dollar')
-    // this.database.child('products').push(
-    //   {name:'Samsung A8', description: ' ', company: 'Samsung', model: 'A8', discount: '10', category: 'mobile', price: '1200', image: '/images/items/samsung_a8.png'},
-    // )
-    // this.database.child('products').push(
-    //     {name:'Samsung S6', description: ' ', company: 'Samsung', model: 'S6', discount: '5', category: 'mobile', price: '500', image: '/images/items/samsung_s6.png'},
-    // )
-    // this.database.child('products').push(
-    //     {name:'Samsung S7', description: ' ', company: 'Samsung', model: 'S7', discount: '8', category: 'mobile', price: '600', image: '/images/items/samsung_s7.png'},
-    // )
+    this.database.child('products').remove();
+    this.database.child('currency').set('dollar')
+    this.database.child('products').push(
+      {name:'Samsung A8', description: ' ', company: 'Samsung', model: 'A8', discount: '10', category: 'mobile', price: '1200', image: '/images/items/samsung_a8.png'},
+    )
+    this.database.child('products').push(
+        {name:'Samsung S6', description: ' ', company: 'Samsung', model: 'S6', discount: '5', category: 'mobile', price: '500', image: '/images/items/samsung_s6.png'},
+    )
+    this.database.child('products').push(
+        {name:'Samsung S7', description: ' ', company: 'Samsung', model: 'S7', discount: '8', category: 'mobile', price: '600', image: '/images/items/samsung_s7.png'},
+    )
 
 
-    // this.database.child('products').push(
-    //     {name:'Iphone 5s', description: ' ', company: 'Apple', model: '5s', discount: '0', category: 'mobile', price: '400', image: '/images/items/iphone5.png'},
-    // )
-    // this.database.child('products').push(
-    //     {name:'Iphone 6', description: ' ', company: 'Apple', model: '6', discount: '0', category: 'mobile', price: '600', image: '/images/items/iphone6.png'},
-    // )
-    // this.database.child('products').push(
-    //     {name:'Iphone 7', description: ' ', company: 'Apple', model: '7', discount: '0', category: 'mobile', price: '650', image: '/images/items/iphone7.png'},
-    // )
-    // this.database.child('products').push(
-    //     {name:'Iphone X', description: ' ', company: 'Apple', model: 'X', discount: '10', category: 'mobile', price: '1150', image: '/images/items/4.jpg'},
-    // )
+    this.database.child('products').push(
+        {name:'Iphone 5s', description: ' ', company: 'Apple', model: '5s', discount: '0', category: 'mobile', price: '400', image: '/images/items/iphone5.png'},
+    )
+    this.database.child('products').push(
+        {name:'Iphone 6', description: ' ', company: 'Apple', model: '6', discount: '0', category: 'mobile', price: '600', image: '/images/items/iphone6.png'},
+    )
+    this.database.child('products').push(
+        {name:'Iphone 7', description: ' ', company: 'Apple', model: '7', discount: '0', category: 'mobile', price: '650', image: '/images/items/iphone7.png'},
+    )
+    this.database.child('products').push(
+        {name:'Iphone X', description: ' ', company: 'Apple', model: 'X', discount: '10', category: 'mobile', price: '1150', image: '/images/items/4.jpg'},
+    )
 
 
-    // this.database.child('products').push(
-    //     {name:'Female Hand bag', description: ' ', company: null, model: null, discount: '10', category: 'female', price: '20', image: '/images/items/3.jpg'},
-    // )
-    // this.database.child('products').push(
-    //     {name:'juicer machine', description: ' ', company: null, model: null, discount: '50', category: 'kitchen', price: '120', image: '/images/items/2.jpg'},
-    // )
-    // this.database.child('products').push(
-    //     {name:'Couch', description: ' ', company: null, model: null, discount: '25', category: 'furniture', price: '200', image: '/images/items/5.jpg'},
-    // )
-    // this.database.child('products').push(
-    //     {name:'Chair', description: ' ', company: null, model: null, discount: '40', category: 'furniture', price: '200', image: '/images/items/6.jpg'},
-    // )
-    // this.database.child('products').push(
-    //     {name:'Wrist watches', description: ' ', company: 'Apple', model: null, discount: '0', category: 'watch', price: '200', image: '/images/items/7.jpg'},
-    // )
-    // this.database.child('products').push(
-    //     {name:'I Mac', description: ' ', company: 'Apple', model: 'Pro', discount: '2', category: 'Computer', price: '2000', image: '/images/items/comp.png'},
-    // )
-    // this.database.child('products').push(
-    //     {name:'Stream Iron', description: ' ', company: null, model: null, discount: '5', category: 'electronics', price: '100', image: '/images/items/1.jpg'},
-    // )
+    this.database.child('products').push(
+        {name:'Female Hand bag', description: ' ', company: null, model: null, discount: '10', category: 'female', price: '20', image: '/images/items/3.jpg'},
+    )
+    this.database.child('products').push(
+        {name:'juicer machine', description: ' ', company: null, model: null, discount: '50', category: 'kitchen', price: '120', image: '/images/items/2.jpg'},
+    )
+    this.database.child('products').push(
+        {name:'Couch', description: ' ', company: null, model: null, discount: '25', category: 'furniture', price: '200', image: '/images/items/5.jpg'},
+    )
+    this.database.child('products').push(
+        {name:'Chair', description: ' ', company: null, model: null, discount: '40', category: 'furniture', price: '200', image: '/images/items/6.jpg'},
+    )
+    this.database.child('products').push(
+        {name:'Wrist watches', description: ' ', company: 'Apple', model: null, discount: '0', category: 'watch', price: '200', image: '/images/items/7.jpg'},
+    )
+    this.database.child('products').push(
+        {name:'I Mac', description: ' ', company: 'Apple', model: 'Pro', discount: '2', category: 'Computer', price: '2000', image: '/images/items/comp.png'},
+    )
+    this.database.child('products').push(
+        {name:'Stream Iron', description: ' ', company: null, model: null, discount: '5', category: 'electronics', price: '100', image: '/images/items/1.jpg'},
+    )
     
     
-    // this.database.child('products').push(
-    //   {name:'Apple', description: ' ', model: 'Air', discount: '12%', category: 'mobile', price: '1500', image: '/images/apple_air.jpg'},
-    // )
+    this.database.child('products').push(
+      {name:'Apple', description: ' ', model: 'Air', discount: '12%', category: 'mobile', price: '1500', image: '/images/apple_air.jpg'},
+    )
     
     /* FEATURE PRODUCTS*/
-    // this.database.child('products').child('feature_product').push(
-    //   {ref: '-LS_tT6H9t7cO8CGwWxN', dataTime: '1/1/2019 20:20'}
-    // )
-    // this.database.child('products').child('feature_product').push(
-    //   {ref: '-LS_ySCDJo3Sg0PGhltd', dataTime: '2/1/2019 10:20'}
-    // )
+    this.database.child('products').child('feature_product').push(
+      {ref: '-LS_tT6H9t7cO8CGwWxN', dataTime: '1/1/2019 20:20'}
+    )
+    this.database.child('products').child('feature_product').push(
+      {ref: '-LS_ySCDJo3Sg0PGhltd', dataTime: '2/1/2019 10:20'}
+    )
 
-    // /* RECENTLY VIEWED */
-    // this.database.child('products').child('recently_viewed').push(
-    //   {ref: '-LS_ySCDJo3Sg0PGhltd', dataTime: '2/1/2019 10:20'}
-    // )
+    /* RECENTLY VIEWED */
+    this.database.child('products').child('recently_viewed').push(
+      {ref: '-LS_ySCDJo3Sg0PGhltd', dataTime: '2/1/2019 10:20'}
+    )
 
 
 
