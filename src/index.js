@@ -7,7 +7,7 @@ import App from './App/App';
 import Auth from './App/auth/Auth';
 import * as serviceWorker from './serviceWorker';
 
-const initialState = {
+const initialState={
     auth: Auth.isAuth(),
     products: false,
     cart: []
