@@ -13,7 +13,6 @@ const initialState = {
     cart: []
 }
 
-
 const store = createStore(Reducer, initialState, compose(
     window.devToolsExtension ? window.devToolsExtension() : f => f
   ));
